@@ -12,6 +12,8 @@
 		FD6A1FCF217C72C6006B10AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD6A1FCD217C72C6006B10AC /* Main.storyboard */; };
 		FD6A1FD1217C72C9006B10AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD6A1FD0217C72C9006B10AC /* Assets.xcassets */; };
 		FD6A1FD4217C72C9006B10AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD6A1FD2217C72C9006B10AC /* LaunchScreen.storyboard */; };
+		FD6D1B26217C8ADA00EA26AB /* PinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6D1B25217C8ADA00EA26AB /* PinkViewController.swift */; };
+		FD6D1B29217CAB8000EA26AB /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD6D1B27217CAB7F00EA26AB /* Main2.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		FD6A1FD0217C72C9006B10AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD6A1FD3217C72C9006B10AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD6A1FD5217C72C9006B10AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD6D1B25217C8ADA00EA26AB /* PinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinkViewController.swift; sourceTree = "<group>"; };
+		FD6D1B28217CAB7F00EA26AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Xcode10Test/Base.lproj/Main2.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				FD6A1FC9217C72C6006B10AC /* AppDelegate.swift */,
 				FD6A1FCB217C72C6006B10AC /* ViewController.swift */,
 				FD6A1FCD217C72C6006B10AC /* Main.storyboard */,
+				FD6D1B27217CAB7F00EA26AB /* Main2.storyboard */,
+				FD6D1B25217C8ADA00EA26AB /* PinkViewController.swift */,
 				FD6A1FD0217C72C9006B10AC /* Assets.xcassets */,
 				FD6A1FD2217C72C9006B10AC /* LaunchScreen.storyboard */,
 				FD6A1FD5217C72C9006B10AC /* Info.plist */,
@@ -124,6 +130,7 @@
 			files = (
 				FD6A1FD4217C72C9006B10AC /* LaunchScreen.storyboard in Resources */,
 				FD6A1FD1217C72C9006B10AC /* Assets.xcassets in Resources */,
+				FD6D1B29217CAB8000EA26AB /* Main2.storyboard in Resources */,
 				FD6A1FCF217C72C6006B10AC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD6D1B26217C8ADA00EA26AB /* PinkViewController.swift in Sources */,
 				FD6A1FCC217C72C6006B10AC /* ViewController.swift in Sources */,
 				FD6A1FCA217C72C6006B10AC /* AppDelegate.swift in Sources */,
 			);
@@ -157,6 +165,14 @@
 				FD6A1FD3217C72C9006B10AC /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FD6D1B27217CAB7F00EA26AB /* Main2.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FD6D1B28217CAB7F00EA26AB /* Base */,
+			);
+			name = Main2.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
