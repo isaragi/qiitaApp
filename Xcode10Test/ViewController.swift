@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
 
@@ -17,6 +18,50 @@ class ViewController: UIViewController {
 
     @IBAction func submit(_ sender: Any) {
         NSLog("submit" )
+
+        // 天気情報APIにアクセスする
+//        Alamofire.request("http://weather.livedoor.com/forecast/webservice/json/v1?city=130010").responseJSON {response in
+//            print("Request: \(String(describing: response.request))")
+//            print("Response: \(String(describing: response.response))")
+//            print("Result: \(String(describing: response.result))")
+//
+//            if let json = response.result.value {
+//                print("JSON: \(json)")  // serialized json response
+//            }
+//
+//            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+//                print("Data: \(utf8Text)")  // original server data as UTF8 String
+//            }
+//        }
+        
+//        Alamofire.request("https://qiita.com/api/v2/tags?page=1&per_page=20&sort=count").responseJSON {response in
+//            print("Request: \(String(describing: response.request))")
+//            print("Response: \(String(describing: response.response))")
+//            print("Result: \(String(describing: response.result))")
+//
+//            if let json = response.result.value {
+//                print("JSON: \(json)")  // serialized json response
+//            }
+//
+//            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+//                print("Data: \(utf8Text)")  // original server data as UTF8 String
+//            }
+//        }
+        
+        
+        Alamofire.request("https://qiita.com/api/v2/tags/ios/items?page=1&per_page=15").responseJSON {response in
+            print("Request: \(String(describing: response.request))")
+            print("Response: \(String(describing: response.response))")
+            print("Result: \(String(describing: response.result))")
+            
+            if let json = response.result.value {
+                print("JSON: \(json)")  // serialized json response
+            }
+            
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                print("Data: \(utf8Text)")  // original server data as UTF8 String
+            }
+        }
 
     }
     
