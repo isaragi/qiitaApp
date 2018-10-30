@@ -20,36 +20,49 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
         case error
     }
     
-    let table = UITableView()
-    var articles: [[String: String?]] = []
+    private let tableView = UITableView()
+    private var articles: [[String: String?]] = []
     private var page: Int = 1
     private var loadStatus: LoadStatus = LoadStatus.initial;
-    let cellId: String = "ArticleListViewCell"
-    let webViewId: String = "ArticleWebViewController"
+    private static let cellId: String = "ArticleListViewCell"
+    private static let webViewId: String = "ArticleWebViewController"
     var isNewArticle: Bool = true
     var requestTag: String = "iOS"
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
         title = isNewArticle ? "新着" : requestTag
-        table.frame = view.frame
-        view.addSubview(table)
-        table.dataSource = self
-        table.delegate = self
-        table.estimatedRowHeight = 118
-        table.rowHeight = UITableView.automaticDimension
+        self.tableView.frame = view.frame
+        view.addSubview(tableView)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.estimatedRowHeight = 118
+        self.tableView.rowHeight = UITableView.automaticDimension
         getArticles()
-        table.register(UINib(nibName: "ArticleListViewCell", bundle: nil), forCellReuseIdentifier: cellId)
+        self.tableView.register(UINib(nibName: "ArticleListViewCell", bundle: nil), forCellReuseIdentifier: ArticleListViewController.cellId)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChange(notification:)),name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    @objc func onOrientationChange(notification: NSNotification) {
+        
+        self.tableView.frame.size = CGSize(width: view.frame.width, height: view.frame.height)
+        self.tableView.setNeedsDisplay()
+        self.tableView.reloadData()
     }
     
     func getArticles() {
         
-        if loadStatus == LoadStatus.fetching || loadStatus == LoadStatus.full { return }
-        loadStatus = LoadStatus.fetching
+        if self.loadStatus == LoadStatus.fetching || self.loadStatus == LoadStatus.full { return }
+        self.loadStatus = LoadStatus.fetching
         
-        var url:String = "https://qiita.com/api/v2/"
+        var url = "https://qiita.com/api/v2/"
         url += isNewArticle ? "items?page=\(page)&per_page=20" : "tags/\(requestTag)/items?page=\(page)&per_page=20"
         
         // 新着記事読み込み
@@ -72,7 +85,7 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
                         "userId": json["user"]["id"].string,
                         "url": json["url"].string,
                         "profile_image_url": json["user"]["profile_image_url"].string,
-                        "likes_count": json["likes_count"].string,
+                        "likes_count": json["likes_count"].int?.description,
                         "tags": tags
                     ]
                     self.articles.append(article)
@@ -91,13 +104,14 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
                 print(self.articles)
                 self.loadStatus = LoadStatus.loadmore
                 self.page += 1
-                self.table.reloadData()
+                self.tableView.reloadData()
         }
     }
     
+    // タグの連結文字列を整形
     func getTag(json :JSON) -> String {
         
-        var tags: String = ""
+        var tags = ""
         let arrayTags = json["tags"].arrayValue.map({$0["name"].stringValue})
         
         for tag in arrayTags {
@@ -114,14 +128,14 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return articles.count
+        return self.articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = table.dequeueReusableCell(withIdentifier: cellId) as! ArticleListViewCell
-        let article = articles[indexPath.row]
-        if articles.count == 0 { return cell }
+        let cell = tableView.dequeueReusableCell(withIdentifier: ArticleListViewController.cellId) as! ArticleListViewCell
+        let article = self.articles[indexPath.row]
+        if self.articles.count == 0 { return cell }
         cell.configureCell(article: article)
         return cell
     }
@@ -145,9 +159,9 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let article = articles[indexPath.row]
+        let article = self.articles[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let webView = storyboard.instantiateViewController(withIdentifier: webViewId) as! ArticleWebViewController
+        let webView = storyboard.instantiateViewController(withIdentifier: ArticleListViewController.webViewId) as! ArticleWebViewController
         webView.urlString = article["url"]!!
         self.present(webView, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)

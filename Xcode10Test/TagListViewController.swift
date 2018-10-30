@@ -21,20 +21,21 @@ class TagListViewController: UIViewController ,UICollectionViewDataSource, UICol
         case error
     }
     
-    var tags: [[String: String?]] = []
-    private var loadStatus: LoadStatus = LoadStatus.initial;
-    let cellId: String = "TagListViewCell"
+    private var tags: [[String: String?]] = []
     private var page: Int = 1
+    private var loadStatus: LoadStatus = LoadStatus.initial;
+    private static let cellId: String = "TagListViewCell"
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         getTags()
     }
     
     func getTags() {
         
-        if loadStatus == LoadStatus.fetching || loadStatus == LoadStatus.full { return }
-        loadStatus = LoadStatus.fetching
+        if self.loadStatus == LoadStatus.fetching || self.loadStatus == LoadStatus.full { return }
+        self.loadStatus = LoadStatus.fetching
         
         // タグ読み込み
         Alamofire.request("https://qiita.com/api/v2/tags?page=\(page)&per_page=50&sort=count")
@@ -73,66 +74,44 @@ class TagListViewController: UIViewController ,UICollectionViewDataSource, UICol
         }
     }
     
+    /*
+     * UICollectionViewDataSource
+     */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tags.count;
+        
+        return self.tags.count;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-
-        let tag = tags[indexPath.row]
-        let label = cell.contentView.viewWithTag(2) as! UILabel
-        label.text = tag["id"]!
-        
-        var imageView = cell.contentView.viewWithTag(1) as! UIImageView
-        guard let url = tag["icon_url"]! else {
-            imageView.image = Image(named: "no-image")
-            return cell
-        }
-        let requestUrl = URL(string: url)!
-        
-        imageView.af_setImage(
-            withURL:requestUrl,
-            placeholderImage: UIImage(named: "no-image"),
-            filter: nil,
-            progress:nil,
-            progressQueue: DispatchQueue.main,
-            imageTransition: .noTransition,
-            runImageTransitionIfCached: false,
-            completion: nil
-        )
+        var cell: TagListCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: TagListViewController.cellId, for: indexPath) as! TagListCollectionViewCell
+        let tag = self.tags[indexPath.row]
+        cell = cell.configureCell(tag: tag)
         
         return cell
     }
 
-    // Screenサイズに応じたセルサイズを返す
-    // UICollectionViewDelegateFlowLayoutの設定が必要
+    /*
+     * UICollectionViewDelegateFlowLayout
+     */
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        // 横方向のスペース調整
         let horizontalSpace:CGFloat = 2
         let cellSize:CGFloat = self.view.bounds.width / 5 - horizontalSpace
-        // 正方形で返すためにwidth,heightを同じにする
+
         return CGSize(width: cellSize, height: cellSize)
     }
     
+    /*
+     * UICollectionViewDelegate
+     */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let articleListView = ArticleListViewController()
-        let tag = tags[indexPath.row]
+        let tag = self.tags[indexPath.row]
         articleListView.requestTag = tag["id"]!!
         articleListView.isNewArticle = false
         self.navigationController?.pushViewController(articleListView, animated: true)
-        
-    }
-    
-    @IBAction func backBtnDidTap(_ sender: Any) {
-        dismiss(animated: true, completion: {
-            NSLog("Close View: %@", NSStringFromClass(type(of: self)) )
-            //[presentingViewController] () -> Void in
-            //presentingViewController?.viewWillAppear(true)
-        })
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

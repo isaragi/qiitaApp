@@ -17,7 +17,7 @@ class ArticleListViewCell: UITableViewCell {
     @IBOutlet weak var tags: UILabel!
     @IBOutlet weak var likesCountLabel: UILabel!
     
-    let article: [String: String?] = [:]
+    private let article: [String: String?] = [:]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,24 +33,22 @@ class ArticleListViewCell: UITableViewCell {
     func configureCell(article: [String: String?]) {
         
         self.titleLabel.text = article["title"]!
-        let countString : String? = article["likes_count"]!
-        self.likesCountLabel.text = (countString != nil) ? countString : "0"
+        self.likesCountLabel.text = article["likes_count"]!
         self.userNameLabel.text = "by " + article["userId"]!!
+//        self.tags.text = "Python  機械学習  AI  AIAcademy  ディープラーンング"
         self.tags.text = article["tags"]!
-//        cell.tags.text = "Python  機械学習  AI  AIAcademy  ディープラーンング"
+        
         let url = article["profile_image_url"]!
         let requestUrl = URL(string: url!)!
-        
         self.userImageView!.af_setImage(
             withURL:requestUrl,
             placeholderImage: UIImage(named: "no-image"),
             filter: nil,
             progress:nil,
             progressQueue: DispatchQueue.main,
-            imageTransition: .noTransition,
+            imageTransition: .crossDissolve(0.5),
             runImageTransitionIfCached: false,
             completion: nil)
     }
     
-
 }
