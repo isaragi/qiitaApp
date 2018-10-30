@@ -72,7 +72,7 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
                         "userId": json["user"]["id"].string,
                         "url": json["url"].string,
                         "profile_image_url": json["user"]["profile_image_url"].string,
-                        "likes_count": json["likes_count"].string,
+                        "likes_count": json["likes_count"].int?.description,
                         "tags": tags
                     ]
                     self.articles.append(article)
