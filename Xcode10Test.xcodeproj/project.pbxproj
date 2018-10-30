@@ -19,6 +19,7 @@
 		FD934A42217F8EF7001B5B4F /* ArticleListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD934A41217F8EF7001B5B4F /* ArticleListViewCell.xib */; };
 		FD934A46217F90CC001B5B4F /* ArticleListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD934A45217F90CC001B5B4F /* ArticleListViewCell.swift */; };
 		FDC35E072187646700CEB14C /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC35E062187646700CEB14C /* TagListViewController.swift */; };
+		FDC35E092188CBDC00CEB14C /* TagListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC35E082188CBDC00CEB14C /* TagListCollectionViewCell.swift */; };
 		FDC904032185FBE3000EC382 /* ArticleWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC904022185FBE3000EC382 /* ArticleWebViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		FD934A41217F8EF7001B5B4F /* ArticleListViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListViewCell.xib; sourceTree = "<group>"; };
 		FD934A45217F90CC001B5B4F /* ArticleListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewCell.swift; sourceTree = "<group>"; };
 		FDC35E062187646700CEB14C /* TagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
+		FDC35E082188CBDC00CEB14C /* TagListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListCollectionViewCell.swift; sourceTree = "<group>"; };
 		FDC904022185FBE3000EC382 /* ArticleWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +101,7 @@
 				FD934A45217F90CC001B5B4F /* ArticleListViewCell.swift */,
 				FD934A41217F8EF7001B5B4F /* ArticleListViewCell.xib */,
 				FDC35E062187646700CEB14C /* TagListViewController.swift */,
+				FDC35E082188CBDC00CEB14C /* TagListCollectionViewCell.swift */,
 				FDC904022185FBE3000EC382 /* ArticleWebViewController.swift */,
 				FD6D1B27217CAB7F00EA26AB /* Main2.storyboard */,
 				FD6D1B25217C8ADA00EA26AB /* PinkViewController.swift */,
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD6D1B26217C8ADA00EA26AB /* PinkViewController.swift in Sources */,
+				FDC35E092188CBDC00CEB14C /* TagListCollectionViewCell.swift in Sources */,
 				FD934A46217F90CC001B5B4F /* ArticleListViewCell.swift in Sources */,
 				FD934A40217E2753001B5B4F /* ArticleListViewController.swift in Sources */,
 				FD6A1FCC217C72C6006B10AC /* ViewController.swift in Sources */,
