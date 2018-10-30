@@ -26,11 +26,14 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
     private var loadStatus: LoadStatus = LoadStatus.initial;
     let cellId: String = "ArticleListViewCell"
     let webViewId: String = "ArticleWebViewController"
+    var isNewArticle: Bool = true
+    var requestTag: String = "iOS"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "新着"
+        title = isNewArticle ? "新着" : requestTag
         table.frame = view.frame
         view.addSubview(table)
         table.dataSource = self
@@ -46,8 +49,11 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
         if loadStatus == LoadStatus.fetching || loadStatus == LoadStatus.full { return }
         loadStatus = LoadStatus.fetching
         
+        var url:String = "https://qiita.com/api/v2/"
+        url += isNewArticle ? "items?page=\(page)&per_page=20" : "tags/\(requestTag)/items?page=\(page)&per_page=20"
+        
         // 新着記事読み込み
-        Alamofire.request("https://qiita.com/api/v2/items?page=\(page)&per_page=20")
+        Alamofire.request(url)
             .responseJSON { response in
                 //print(response.result.value)
                 guard let object = response.result.value else {
@@ -83,9 +89,9 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
                 }
                 
                 print(self.articles)
+                self.loadStatus = LoadStatus.loadmore
                 self.page += 1
                 self.table.reloadData()
-                self.loadStatus = LoadStatus.loadmore
         }
     }
     
@@ -115,6 +121,7 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
         
         let cell = table.dequeueReusableCell(withIdentifier: cellId) as! ArticleListViewCell
         let article = articles[indexPath.row]
+        if articles.count == 0 { return cell }
         cell.configureCell(article: article)
         return cell
     }
