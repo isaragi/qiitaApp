@@ -58,4 +58,9 @@ class ArticleWebViewController: UIViewController, WKNavigationDelegate {
         }
     }
 
+    @IBAction func closeBtnDidTap(_ sender: Any) {
+        dismiss(animated: true, completion: {
+            NSLog("Close View: %@", NSStringFromClass(type(of: self)) )
+        })
+    }
 }
