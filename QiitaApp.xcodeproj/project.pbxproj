@@ -23,7 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FD6A1FC6217C72C6006B10AC /* Xcode10Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xcode10Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD6A1FC6217C72C6006B10AC /* QiitaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QiitaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD6A1FC9217C72C6006B10AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD6A1FCE217C72C6006B10AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FD6A1FD0217C72C9006B10AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		FD6A1FBD217C72C6006B10AC = {
 			isa = PBXGroup;
 			children = (
-				FD6A1FC8217C72C6006B10AC /* Xcode10Test */,
+				FD6A1FC8217C72C6006B10AC /* QiitaApp */,
 				FD6A1FC7217C72C6006B10AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,12 +62,12 @@
 		FD6A1FC7217C72C6006B10AC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FD6A1FC6217C72C6006B10AC /* Xcode10Test.app */,
+				FD6A1FC6217C72C6006B10AC /* QiitaApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FD6A1FC8217C72C6006B10AC /* Xcode10Test */ = {
+		FD6A1FC8217C72C6006B10AC /* QiitaApp */ = {
 			isa = PBXGroup;
 			children = (
 				FD6A1FCD217C72C6006B10AC /* Main.storyboard */,
@@ -82,15 +82,15 @@
 				FD6A1FD2217C72C9006B10AC /* LaunchScreen.storyboard */,
 				FD6A1FD5217C72C9006B10AC /* Info.plist */,
 			);
-			path = Xcode10Test;
+			path = QiitaApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FD6A1FC5217C72C6006B10AC /* Xcode10Test */ = {
+		FD6A1FC5217C72C6006B10AC /* QiitaApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FD6A1FD8217C72C9006B10AC /* Build configuration list for PBXNativeTarget "Xcode10Test" */;
+			buildConfigurationList = FD6A1FD8217C72C9006B10AC /* Build configuration list for PBXNativeTarget "QiitaApp" */;
 			buildPhases = (
 				FD6A1FC2217C72C6006B10AC /* Sources */,
 				FD6A1FC3217C72C6006B10AC /* Frameworks */,
@@ -100,14 +100,14 @@
 			);
 			dependencies = (
 			);
-			name = Xcode10Test;
+			name = QiitaApp;
 			packageProductDependencies = (
 				74CA325625FDEC7D005813FF /* SwiftyJSON */,
 				74CA325A25FDED4B005813FF /* Alamofire */,
 				74CA325E25FDED77005813FF /* AlamofireImage */,
 			);
-			productName = Xcode10Test;
-			productReference = FD6A1FC6217C72C6006B10AC /* Xcode10Test.app */;
+			productName = QiitaApp;
+			productReference = FD6A1FC6217C72C6006B10AC /* QiitaApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -125,7 +125,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FD6A1FC1217C72C6006B10AC /* Build configuration list for PBXProject "Xcode10Test" */;
+			buildConfigurationList = FD6A1FC1217C72C6006B10AC /* Build configuration list for PBXProject "QiitaApp" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -143,7 +143,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FD6A1FC5217C72C6006B10AC /* Xcode10Test */,
+				FD6A1FC5217C72C6006B10AC /* QiitaApp */,
 			);
 		};
 /* End PBXProject section */
@@ -319,12 +319,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Xcode10Test/Info.plist;
+				INFOPLIST_FILE = QiitaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.atsushi-igarashi.Xcode10Test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.atsushi-igarashi.QiitaApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -336,12 +336,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Xcode10Test/Info.plist;
+				INFOPLIST_FILE = QiitaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.atsushi-igarashi.Xcode10Test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.atsushi-igarashi.QiitaApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -351,7 +351,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FD6A1FC1217C72C6006B10AC /* Build configuration list for PBXProject "Xcode10Test" */ = {
+		FD6A1FC1217C72C6006B10AC /* Build configuration list for PBXProject "QiitaApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FD6A1FD6217C72C9006B10AC /* Debug */,
@@ -360,7 +360,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FD6A1FD8217C72C9006B10AC /* Build configuration list for PBXNativeTarget "Xcode10Test" */ = {
+		FD6A1FD8217C72C9006B10AC /* Build configuration list for PBXNativeTarget "QiitaApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FD6A1FD9217C72C9006B10AC /* Debug */,
