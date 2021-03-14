@@ -33,14 +33,14 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        title = isNewArticle ? "新着" : requestTag
+        self.title = isNewArticle ? "新着" : requestTag
         self.tableView.frame = view.frame
-        view.addSubview(tableView)
+        self.view.addSubview(tableView)
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.estimatedRowHeight = 118
         self.tableView.rowHeight = UITableView.automaticDimension
-        getArticles()
+        self.getArticles()
         self.tableView.register(UINib(nibName: "ArticleListViewCell", bundle: nil), forCellReuseIdentifier: ArticleListViewController.cellId)
     }
     
@@ -66,32 +66,32 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
         url += isNewArticle ? "items?page=\(page)&per_page=20" : "tags/\(requestTag)/items?page=\(page)&per_page=20"
         
         // 新着記事読み込み
-        Alamofire.request(url)
+        AF.request(url)
             .responseJSON { response in
                 //print(response.result.value)
-                guard let object = response.result.value else {
+                switch response.result {
+                case .success(let object):
+                    let json = JSON(object)
+                    json.forEach { (_, json) in
+                        //print(json["title"].string!)
+                        //print(json["user"]["id"].string!)
+                        let tags = self.getTag(json: json)
+                        
+                        let article = [
+                            "title": json["title"].string,
+                            "userId": json["user"]["id"].string,
+                            "url": json["url"].string,
+                            "profile_image_url": json["user"]["profile_image_url"].string,
+                            "likes_count": String(json["likes_count"].int ?? 0),
+                            "tags": tags
+                        ]
+                        self.articles.append(article)
+                    }
+                case .failure(_):
                     self.loadStatus = LoadStatus.error
-                    return
                 }
                 
-                let json = JSON(object)
-                json.forEach { (_, json) in
-                    //print(json["title"].string!)
-                    //print(json["user"]["id"].string!)
-                    let tags = self.getTag(json: json)
-                    
-                    let article: [String: String?] = [
-                        "title": json["title"].string,
-                        "userId": json["user"]["id"].string,
-                        "url": json["url"].string,
-                        "profile_image_url": json["user"]["profile_image_url"].string,
-                        "likes_count": json["likes_count"].int?.description,
-                        "tags": tags
-                    ]
-                    self.articles.append(article)
-                }
-                
-                if self.articles.count == 0 {
+                if self.articles.isEmpty {
                     self.loadStatus = LoadStatus.full
                     return
                 }
@@ -101,7 +101,7 @@ class ArticleListViewController: UIViewController, UITableViewDataSource, UITabl
                     return
                 }
                 
-                print(self.articles)
+                //print(self.articles)
                 self.loadStatus = LoadStatus.loadmore
                 self.page += 1
                 self.tableView.reloadData()

@@ -38,25 +38,22 @@ class TagListViewController: UIViewController ,UICollectionViewDataSource, UICol
         self.loadStatus = LoadStatus.fetching
         
         // タグ読み込み
-        Alamofire.request("https://qiita.com/api/v2/tags?page=\(page)&per_page=50&sort=count")
+        AF.request("https://qiita.com/api/v2/tags?page=\(page)&per_page=50&sort=count")
             .responseJSON { response in
                 //print(response.result.value)
-                guard let object = response.result.value else {
+                switch response.result {
+                case .success(let object):
+                    let json = JSON(object)
+                    json.forEach { (_, json) in
+                        let tag = ["icon_url": json["icon_url"].string, "id": json["id"].string]
+                        self.tags.append(tag)
+                    }
+                case .failure(_):
                     self.loadStatus = LoadStatus.error
                     return
                 }
                 
-                let json = JSON(object)
-                json.forEach { (_, json) in
-                    
-                    let tag: [String: String?] = [
-                        "icon_url": json["icon_url"].string,
-                        "id": json["id"].string,
-                    ]
-                    self.tags.append(tag)
-                }
-                
-                if self.tags.count == 0 {
+                if self.tags.isEmpty {
                     self.loadStatus = LoadStatus.full
                     return
                 }
