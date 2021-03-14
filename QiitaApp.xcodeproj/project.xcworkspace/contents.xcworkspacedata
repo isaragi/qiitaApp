@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Xcode10Test.xcodeproj">
+      location = "self:/Users/a_igarashi/src/isarag/qiita/QiitaApp.xcodeproj">
    </FileRef>
 </Workspace>
