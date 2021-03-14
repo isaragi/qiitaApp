@@ -1,9 +1,10 @@
-# Qiita ビュワーアプリ
-# Xcode 10.0
-# Swift 4.2
+# Qiita ビューワアプリ
+## Xcode 12.2
+## Swift 5.0
+## ライブラリ管理
+Swift Package Manager
 
 ## How to build 
 ```
-cd hoge/qiita
-pod install
+command + R
 ```
